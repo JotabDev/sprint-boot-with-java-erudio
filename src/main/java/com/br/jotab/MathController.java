@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.jotab.exceptions.InsupportedMathOperationException;
+
 @RestController
 @RequestMapping()
 public class MathController {
@@ -16,7 +18,7 @@ public class MathController {
 	            @PathVariable(value = "numberTwo") String numberTwo) {
 	        
 	        if (!isNumber(numberOne) || !isNumber(numberTwo)) {
-	            throw new IllegalArgumentException("Invalid input: both parameters must be numbers.");
+	            throw new InsupportedMathOperationException("Please set numeric value");
 	        }
 	        
 	        return convertToDouble(numberOne) + convertToDouble(numberTwo);
