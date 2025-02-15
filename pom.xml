@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.br.jotab</groupId>
-	<artifactId>spring-boot-with-java-erudio</artifactId>
+	<artifactId>spring-boot-with-java-erudio.model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-with-java-erudio</name>
+	<name>spring-boot-with-java-erudio.model</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
