@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.jotab.Mapper.DozerMapper;
+import com.br.jotab.data.vo.v1.PersonVO;
 import com.br.jotab.expections.ResourceNotFoundException;
 import com.br.jotab.model.Person;
 import com.br.jotab.repositories.PersonRepository;
@@ -18,29 +20,33 @@ public class PersonServices {
 	@Autowired
 	PersonRepository repository;
 
-	public List<Person> findByAll() {
+	public List<PersonVO> findByAll() {
 
 		logger.info("Find All People");
 
-		return repository.findAll();
+		return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
 
 	}
 
-	public Person findById(Long id) {
+	public PersonVO findById(Long id) {
 
 		logger.info("finding one person");
 
-		return repository.findById(id)
+		Person entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Not Records " + "Found for This ID!"));
+	
+		return DozerMapper.parseObject(entity, PersonVO.class);
 	}
 
-	public Person create(Person personCreate) {
+	public PersonVO create(PersonVO personCreate) {
 		logger.info("create one person");
 
-		return repository.save(personCreate);
+		Person entity = DozerMapper.parseObject(personCreate, Person.class);
+		PersonVO vo =DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+				return vo;
 	}
 
-	public Person update(Person personUpdate) {
+	public PersonVO update(PersonVO personUpdate) {
 		logger.info("updating one person");
 
 		Person entity = repository.findById(personUpdate.getId())
@@ -48,10 +54,11 @@ public class PersonServices {
 
 		entity.setFirstName(personUpdate.getFirstName());
 		entity.setLastName(personUpdate.getLastName());
-		entity.setAndress(personUpdate.getAndress());
+		entity.setAddress(personUpdate.getAddress());
 		entity.setGender(personUpdate.getGender());
 
-		return repository.save(personUpdate);
+		PersonVO vo =DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+		return vo;
 	}
 
 	public void delete(Long id) {

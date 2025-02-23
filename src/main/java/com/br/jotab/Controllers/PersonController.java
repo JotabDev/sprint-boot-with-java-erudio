@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.jotab.model.Person;
+import com.br.jotab.data.vo.v1.PersonVO;
 import com.br.jotab.services.PersonServices;
 
 @RestController
@@ -28,16 +28,16 @@ public class PersonController {
 	// produces = MediaType.APPLICATION_JSON_VALUE)
 
 	@GetMapping("/{id}")
-	public Person findById(@PathVariable() Long id) {
+	public PersonVO findById(@PathVariable() Long id) {
 		return services.findById(id);
 	}
 	@PostMapping
-	public Person create(@RequestBody Person person) {
+	public PersonVO create(@RequestBody PersonVO person) {
 		return services.create(person);
 	}
 	
 	@PutMapping
-	public Person update(@RequestBody Person person) {
+	public PersonVO update(@RequestBody PersonVO person) {
 		return services.update(person);
 	}
 	// inclusion of ResponseEntity is application StatusCode
@@ -49,7 +49,7 @@ public class PersonController {
 	}
 	
 	@GetMapping
-	public List<Person> findAll() {
+	public List<PersonVO> findAll() {
 		return services.findByAll();
 	}
 
