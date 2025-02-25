@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.jotab.Mapper.DozerMapper;
+import com.br.jotab.Mapper.Custom.PersonMapper;
 import com.br.jotab.data.vo.v1.PersonVO;
+import com.br.jotab.data.vo.v2.PersonVOv2;
 import com.br.jotab.expections.ResourceNotFoundException;
 import com.br.jotab.model.Person;
 import com.br.jotab.repositories.PersonRepository;
@@ -19,6 +21,9 @@ public class PersonServices {
 
 	@Autowired
 	PersonRepository repository;
+
+	@Autowired
+	PersonMapper mapperVO;
 
 	public List<PersonVO> findByAll() {
 
@@ -34,7 +39,7 @@ public class PersonServices {
 
 		Person entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Not Records " + "Found for This ID!"));
-	
+
 		return DozerMapper.parseObject(entity, PersonVO.class);
 	}
 
@@ -42,8 +47,21 @@ public class PersonServices {
 		logger.info("create one person");
 
 		Person entity = DozerMapper.parseObject(personCreate, Person.class);
-		PersonVO vo =DozerMapper.parseObject(repository.save(entity),PersonVO.class);
-				return vo;
+		PersonVO vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+		return vo;
+	}
+
+//Endepointer version V2
+	
+	public PersonVOv2 createV2(PersonVOv2 personCreateV2) {
+		logger.info("create one person with v2");
+
+	//	Person person = mapperVO.convertEntityPerson(personCreateV2);
+	//	PersonVOv2 v2 = mapperVO.convertEntityPersonV2(person);
+		
+		Person person = mapperVO.convertEntityPerson(personCreateV2);
+		PersonVOv2 v2 = mapperVO.convertEntityPersonV2(person);
+		return v2;
 	}
 
 	public PersonVO update(PersonVO personUpdate) {
@@ -57,7 +75,7 @@ public class PersonServices {
 		entity.setAddress(personUpdate.getAddress());
 		entity.setGender(personUpdate.getGender());
 
-		PersonVO vo =DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+		PersonVO vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 		return vo;
 	}
 
