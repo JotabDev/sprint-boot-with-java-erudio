@@ -3,18 +3,22 @@ package com.br.jotab.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"id", "address", "firstName", "lastName"})
 public class PersonVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-
+    @JsonProperty("first-name")
 	private String firstName;
 
 	private String LastName;
 
 	private String Address;
-
+	
 	private String Gender;
 
 	public PersonVO() {
@@ -79,7 +83,4 @@ public class PersonVO implements Serializable {
 				&& Objects.equals(id, other.id);
 	}
 
-	
-	
-	
 }

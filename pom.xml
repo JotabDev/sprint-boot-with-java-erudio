@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.2</version>
+		<version>3.4.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 
 
@@ -53,21 +53,31 @@
 		</dependency>
 
 		<dependency>
-
-		<groupId>org.flywaydb</groupId>
-		<artifactId>flyway-core</artifactId>
-		<version>11.3.3</version>
-
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<scope>runtime</scope>
 		</dependency>
-		
+			<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+
 		<dependency>
 
-		<groupId>org.flywaydb</groupId>
-		<artifactId>flyway-mysql</artifactId>
-		<version>11.3.3</version>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>11.3.3</version><!--$NO-MVN-MAN-VER$-->
 
 		</dependency>
-		
+
+		<dependency>
+
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+			<version>11.3.3</version><!--$NO-MVN-MAN-VER$-->
+
+		</dependency>
+
 		<dependency>
 			<groupId>com.github.dozermapper</groupId>
 			<artifactId>dozer-core</artifactId>
