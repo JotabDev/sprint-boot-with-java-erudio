@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.jotab.data.vo.v1.PersonVO;
-import com.br.jotab.data.vo.v2.PersonVOv2;
+// import com.br.jotab.data.vo.v2.PersonVOv2;
 import com.br.jotab.services.PersonServices;
 
 @RestController
@@ -36,11 +36,12 @@ public class PersonController {
 	public PersonVO create(@RequestBody PersonVO person) {
 		return services.create(person);
 	}
-	
+	/*
 	@PostMapping("/v2")
 	public PersonVOv2 createV2(@RequestBody PersonVOv2 personVOv2) {
 		return services.createV2(personVOv2);
 	}
+	*/
 	
 	@PutMapping
 	public PersonVO update(@RequestBody PersonVO person) {
