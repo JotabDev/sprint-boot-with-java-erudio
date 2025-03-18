@@ -37,4 +37,16 @@ public class CustomizerResponseHandlerException extends ResponseEntityExceptionH
 		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
 		
 	}
+	
+	@ExceptionHandler(RequiredNotFoundException.class)
+	public final ResponseEntity<ExceptionResponse> RequiredNotBadRequestException(Exception ex, WebRequest request){
+	
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(), 
+				ex.getMessage(), 
+				request.getDescription(false));	
+		
+		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);
+		
+	}
 }

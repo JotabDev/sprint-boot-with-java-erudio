@@ -13,6 +13,7 @@ import com.br.jotab.Controllers.PersonController;
 import com.br.jotab.Mapper.DozerMapper;
 import com.br.jotab.Mapper.Custom.PersonMapper;
 import com.br.jotab.data.vo.v1.PersonVO;
+import com.br.jotab.expections.RequiredNotFoundException;
 import com.br.jotab.expections.ResourceNotFoundException;
 import com.br.jotab.model.Person;
 import com.br.jotab.repositories.PersonRepository;
@@ -53,6 +54,9 @@ public class PersonServices {
 	}
 
 	public PersonVO create(PersonVO personCreate) {
+		
+		if(personCreate == null) throw new RequiredNotFoundException();
+		
 		logger.info("create one person");
 
 		Person entity = DozerMapper.parseObject(personCreate, Person.class);
@@ -74,6 +78,9 @@ public class PersonServices {
 	 */
 
 	public PersonVO update(PersonVO personUpdate) {
+		
+		if(personUpdate == null) throw new RequiredNotFoundException();
+		
 		logger.info("updating one person");
 
 		Person entity = repository.findById(personUpdate.getKey())
