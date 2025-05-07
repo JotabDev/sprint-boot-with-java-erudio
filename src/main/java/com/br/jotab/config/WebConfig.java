@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-		// TODO Auto-generated method stub
+
 		// WebMvcConfigurer.super.configureContentNegotiation(configurer);
 
 		// http://localhost:8080/api/person/v1?mediaType=xml - HTTPS de required of

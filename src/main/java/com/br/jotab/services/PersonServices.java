@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.br.jotab.Controllers.PersonController;
 import com.br.jotab.Mapper.DozerMapper;
-import com.br.jotab.Mapper.Custom.PersonMapper;
 import com.br.jotab.data.vo.v1.PersonVO;
 import com.br.jotab.expections.RequiredNotFoundException;
 import com.br.jotab.expections.ResourceNotFoundException;
@@ -25,9 +24,6 @@ public class PersonServices {
 
 	@Autowired
 	PersonRepository repository;
-
-	@Autowired
-	PersonMapper mapperVO;
 
 	public List<PersonVO> findByAll() {
 

@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
-import com.br.jotab.data.vo.v1.PersonVO;
-import com.br.jotab.model.Person;
+import com.br.jotab.data.vo.v1.BookVO;
+import com.br.jotab.model.Book;
 
-public class DozerMapper {
+public class DozerMapperBook {
 
 	// private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 	
@@ -16,11 +16,11 @@ public class DozerMapper {
 	
 	static {
 		mapper
-		.createTypeMap(Person.class, PersonVO.class)
-		.addMapping(Person::getId, PersonVO::setKey);
+		.createTypeMap(Book.class, BookVO.class)
+		.addMapping(Book::getId, BookVO::setKey);
 		mapper
-		.createTypeMap(PersonVO.class,Person.class)
-		.addMapping(PersonVO::getKey, Person::setId);
+		.createTypeMap(BookVO.class,Book.class)
+		.addMapping(BookVO::getKey, Book::setId);
 	}
 	
 	public static <O, D> List<D> parseListObjects(List<O> origin, Class<D> destination) {
